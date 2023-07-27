@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Educator Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+        style="color: rgb(15,127,239); max-height: 520px; min-height: 120px;">
+        <div class="container">
+            <div>
+                <a class="navbar-brand">
+                    <span><img class="img-fluid" src="{% static 'home/logo2.jpg' %}"></span>
+                </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                    style="color: #242943; background: #ffffff;">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav nav-right" style="color: rgb(255, 255, 255);">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parentinfo' %}" style="color: rgb(255,255,255); ">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'searcheducator' %}" style="color: rgb(255,255,255); background-color: #f4476b">Educator Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'showeducatordetails' %}" style="color: rgb(255,255,255);">Educator Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'confirmrequest' %}" style="color: rgb(255,255,255);">Sent Request</a>
+                    </li>
+                    
+                   
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'updateinfo' %}" style="color: rgb(255,252,252);">Update Info</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'parentlogout' %}" style="color: rgb(255,252,252);">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End: sticky dark top nav with dropdown -->
+
+    <div class="container-fluid">
+        <div class="row" style="height: 1000px; background: linear-gradient(to right, #ffff66 0%, #cc99ff 100%);">
+            <div class="col-2" style="margin-top: 200px;">
+
+                <form method="post" action="{% url "searcheducator" %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <select class="border-info shadow form-control" name="educatortype">
+                            <optgroup label="Educator Type">
+                                <option value="Home Educator">Home Educator</option>
+                                <option value="Outside Educator">Outside Educator</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group"><select class="border-info shadow form-control" name="location">
+                            <optgroup label="Location">
+                                <option value="Azimpur">Azimpur</option>
+                                <option value="Badda">Badda</option>
+                                <option value="Dhanmondi">Dhanmondi</option>
+                                <option value="Gulshan">Gulshan</option>
+                                <option value="Hazaribagh">Hazaribagh</option>
+                                <option value="Jatrabari">Jatrabari</option>
+                                <option value="Kalabagan">Kalabagan</option>
+                                <option value="Khilgaon">Khilgaon</option>
+                                <option value="Mirpur">Mirpur</option>
+                                <option value="Mahammadpur">Mahammadpur</option>
+                                <option value="Motijheel">Motijheel</option>
+                                <option value="New Market">New Market</option>
+                                <option value="Shahbagh">Shahbagh</option>
+                                <option value="Tejgaon">Tejgaon</option>
+                                <option value="Uttara">Uttara</option>
+                            </optgroup>
+                        </select></div>
+                    <div class="form-group">
+                        <button class="btn btn-dark text-success border-primary shadow" type="submit"
+                                style="min-width: 90px;max-width: 200px;color: var(--red);font-size: 20px;">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-8">
+                <h2 style="color: #214a80; margin: 20px" align="center">
+                    Type: <span style="color: #db28a5">{{ type }}</span>
+                    Location: <span style="color: #db28a5">{{ location }}</span>
+                </h2>
+                <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{{ hname }}</th>
+                                    <th>{{ hid }}</th>
+                                    <th>{{ uni }}</th>
+                                    <th>{{ exp }}</th>
+                                    <th>{{ hloc }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for es in home_educator %}
+                                    <tr>
+                                        <td>{{ es.homeTutorName }}</td>
+                                        <td>{{ es.id }}</td>
+                                        <td>{{ es.university }}</td>
+                                        <td>{{ es.experience }}</td>
+                                        <td>{{ es.homeTutorLocation }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th>{{ oname }}</th>
+                                    <th>{{ oid }}</th>
+                                    <th>{{ ins }}</th>
+                                    <th>{{ des }}</th>
+                                    <th>{{ oloc }}</th>
+                                </tr>
+                            </thead>
+                             <tbody>
+                                {% for es in outside_educator %}
+                                    <tr>
+                                        <td>{{ es.outsideTutorName }}</td>
+                                        <td>{{ es.id }}</td>
+                                        <td>{{ es.institute }}</td>
+                                        <td>{{ es.designation }}</td>
+                                        <td>{{ es.outsideTutorLocation }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

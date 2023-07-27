@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Log in | Student's Parent</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'studentParent/splogin.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+
+<body>
+    <!-- Start: Login Form Dark -->
+    <section class="login-dark" style="color: rgb(33, 37, 41);">
+        <form method="post" style="background: linear-gradient(135deg, var(--pink) 24%, var(--primary) 63%);" action="{% url 'parentlogin' %}">
+            {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline" style="color: rgb(255,255,255);"></i></div>
+
+            <div class="form-group">
+                <input class="shadow form-control" type="text" name="username"
+                    placeholder="Username" style="background: #dfe7f1; color: #214a80">
+            </div>
+
+            <div class="form-group">
+                <input class="shadow form-control" type="password" name="password"
+                    placeholder="Password" style="color: #214a80; background: #dfe7f1">
+            </div>
+
+            <div>
+                {% for message in messages %}
+                    <h4 style="color: firebrick;" align="center">{{ message }}</h4>
+                {% endfor %}
+            </div>
+
+            <div class="form-group"><button class="btn btn-outline-warning btn-block" type="submit">Log In</button></div>
+
+            <a class="forgot" href="{% url 'parentsignup' %}" style="color: rgb(247,255,10);font-size: 16px;">Don't have an Account? <br>Sign Up here.</a>
+        </form>
+    </section><!-- End: Login Form Dark -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

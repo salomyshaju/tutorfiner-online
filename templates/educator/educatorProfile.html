@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Educator Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'educator/tutorprofile.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+        style="color: rgb(15,127,239); max-height: 520px; min-height: 120px;">
+        <div class="container">
+            <div>
+                <a class="navbar-brand">
+                    <span><img class="img-fluid" src="{% static 'home/logo2.jpg' %}"></span>
+                </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                    style="color: #242943; background: #ffffff;">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav nav-right" style="color: rgb(255, 255, 255);">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'educatorinfo' %}" style="color: rgb(255,255,255); background-color: #f4476b">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'showrequest' %}" style="color: rgb(255,255,255);">Show Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'educatorupdateinfo' %}" style="color: rgb(255,252,252);">Update Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'educatorlogout' %}" style="color: rgb(255,252,252);">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End: sticky dark top nav with dropdown -->
+
+    <header class="ScriptHeader" style="margin-left: 40px; margin-top: 40px;">
+    <div class=" rt-container">
+      <div class="col-rt-12">
+        <div class="rt-heading">
+            <h1> Hello
+                {% for oe in oeducator %}
+                    {{ oe.outsideTutorName }}
+                {% endfor %}
+                {% for he in heducator %}
+                    {{ he.homeTutorName }}
+                {% endfor %}
+            </h1>
+          <h5>Welcome to Tutors Finder System</h5>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+          <div class="student-profile py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Educator Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Name</th>
+                          <td width="2%">:</td>
+                            {% for oe in oeducator %}
+                                <td>{{ oe.outsideTutorName }}</td>
+                            {% endfor %}
+                            {% for he in heducator %}
+                                <td>{{ he.homeTutorName }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                          <th width="30%">ID</th>
+                          <td width="2%">:</td>
+                            {% for oe in oeducator %}
+                                <td>{{ oe.id }}</td>
+                            {% endfor %}
+                            {% for he in heducator %}
+                                <td>{{ he.id }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                          <th width="30%">Email</th>
+                          <td width="2%">:</td>
+                            {% for oe in oeducator %}
+                                <td>{{ oe.outsideTutorEmail}}</td>
+                            {% endfor %}
+                            {% for he in heducator %}
+                                <td>{{ he.homeTutorEmail }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                          <th width="30%">Location</th>
+                          <td width="2%">:</td>
+                            {% for oe in oeducator %}
+                                <td>{{ oe.outsideTutorLocation }}</td>
+                            {% endfor %}
+                            {% for he in heducator %}
+                                <td>{{ he.homeTutorLocation }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                          <th width="30%">Contact</th>
+                          <td width="2%">:</td>
+                            {% for oe in oeducator %}
+                                <td>{{ oe.outsideTutorContact }}</td>
+                            {% endfor %}
+                            {% for he in heducator %}
+                                <td>{{ he.homeTutorContact }}</td>
+                            {% endfor %}
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Deals</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+        style="color: rgb(15,127,239); max-height: 520px; min-height: 120px;">
+        <div class="container">
+            <div>
+                <a class="navbar-brand">
+                    <span><img class="img-fluid" src="{% static 'home/logo2.jpg' %}"></span>
+                </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                    style="color: #242943; background: #ffffff;">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav nav-right" style="color: rgb(255, 255, 255);">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parentinfo' %}" style="color: rgb(255,255,255);">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'searcheducator' %}" style="color: rgb(255,255,255);">Educator Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'showeducatordetails' %}" style="color: rgb(255,255,255);">Educator Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'confirmrequest' %}" style="color: rgb(255,255,255);">Sent Request</a>
+                    </li>
+                     
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'updateinfo' %}" style="color: rgb(255,252,252);">Update Info</a>
+                    </li>
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'parentlogout' %}" style="color: rgb(255,252,252);">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 1000px; background: linear-gradient(to right, #ffff66 0%, #cc99ff 100%);">
+
+            <div class="col-2" style="margin-top: 200px;"></div>
+
+            <div class="col-8">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead style="font-size: 25px">
+                            <tr>
+                                <th>Educator Name</th>
+                                <th>Educator ID</th>
+                                <th>Educator Type</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 20px">
+                            {% for d in deal %}
+                                <tr>
+                                    <td>{{ d.educatorName }}</td>
+                                    <td>{{ d.educatorId }}</td>
+                                    <td>{{ d.educatorType }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

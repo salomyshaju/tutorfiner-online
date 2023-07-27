@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Requests</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+        style="color: rgb(15,127,239); max-height: 520px; min-height: 120px;">
+        <div class="container">
+            <div>
+                <a class="navbar-brand">
+                    <span><img class="img-fluid" src="{% static 'home/logo2.jpg' %}"></span>
+                </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                    style="color: #242943; background: #ffffff;">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav nav-right" style="color: rgb(255, 255, 255);">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'educatorinfo' %}" style="color: rgb(255,255,255);">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'showrequest' %}" style="color: rgb(255,255,255); background-color: #f4476b">Show Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'educatorupdateinfo' %}" style="color: rgb(255,252,252);">Update Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'educatorlogout' %}" style="color: rgb(255,252,252);">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 1000px; background: linear-gradient(to right, #ffff66 0%, #cc99ff 100%);">
+            <div class="col-2" style="margin-top: 200px;">
+
+                <form method="post" action="{% url 'showrequest' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div>
+                        <input class="border-warning shadow form-control" type="number"
+                            name="parentid" min="1" placeholder="Parent ID">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-dark text-success border-primary shadow" type="submit"
+                                style="min-width: 90px;max-width: 200px;color: var(--red);font-size: 20px;">
+                            Accept Request
+                        </button>
+                    </div>
+
+                    <div>
+                        {% for message in messages %}
+                            <h4 style="color: var(--red);" align="center">{{ message }}</h4>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-8">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead style="font-size: 25px">
+                            <tr>
+                                <th>Parent Name</th>
+                                <th>Parent ID</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 20px">
+                            {% for r in req %}
+                                <tr>
+                                    <td>{{ r.parentName }}</td>
+                                    <td>{{ r.parentId }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

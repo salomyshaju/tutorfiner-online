@@ -1,0 +1,70 @@
+{% load static %}
+<html>
+
+
+<head>
+    <title>services</title>
+     <link rel="stylesheet" href="{% static 'new2/css/bootstrap.min.css' %}">
+    <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'new2/css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets -->
+      <link rel="stylesheet" href="{% static 'new2/css/owl.carousel.min.css' %}">
+      <link rel="stylesheet" href="{% static 'new2/css/owl.theme.default.min.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+
+{% block content %}
+<body>
+
+<div class="container">
+    <div class="row">
+        {% for services in service %}
+        <div class="col-lg-4">
+        {% if services.image %}
+            <img class="thumbnail" src="{{services.image.url}}" height="200" width="200">
+            {% endif %}
+            <div class="box-element product">
+                <h6><strong>{{services.name}}</strong></h6>
+                  <h7><strong>{{services.description}}</strong></h7>
+                  <h7><strong>{{services.price}}</strong></h7>
+                <hr>
+                
+
+
+                
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<script src="{% static 'new2/js/jquery.min.js' %}"></script>
+      <script src="{% static 'new2/js/popper.min.js' %}"></script>
+      <script src="{% static 'new2/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'new2/js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 'new2/js/plugin.js' %}"></script>
+
+
+      <!-- javascript -->
+      <script src="{% static 'new2/js/owl.carousel.js' %}"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+</body>
+{% endblock %}
+</html>
+
+
+
+
+
+
+
+
+
+

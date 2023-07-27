@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sign Up | Outside Educator</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'educator/outeducator.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <!-- Start: Registration Form with Photo -->
+    <section class="register-photo"
+        style="padding: 50px 0px;background: linear-gradient(-56deg, var(--teal) 0%, var(--yellow) 99%);box-shadow: 0px 0px;">
+        <!-- Start: Form Container -->
+        <div class="shadow form-container">
+            <!-- Start: Image -->
+            <div class="image-holder"></div><!-- End: Image -->
+            <form method="post" action="{% url 'oeducatorsignup' %}">
+                {% csrf_token %}
+                <h3 class="text-center" style="color: var(--orange);"><strong style="color: var(--green);">Sign UP
+                        for</strong> <br>Outside Educator.</h3>
+                <div class="form-group bg-info border-info shadow"><input class="border-warning shadow form-control"
+                        type="text" name="username" placeholder="Username"></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="email" name="email"
+                        placeholder="Email"></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="text" name="institute"
+                        placeholder="Institute"></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="text" name="designation"
+                        placeholder="Designation"></div>
+
+                <div class="form-group"><select class="border-warning shadow form-control" name="location">
+                        <optgroup label="Location">
+                            <option value="Azimpur">Azimpur</option>
+                            <option value="Badda">Badda</option>
+                            <option value="Dhanmondi">Dhanmondi</option>
+                            <option value="Gulshan">Gulshan</option>
+                            <option value="Hazaribagh">Hazaribagh</option>
+                            <option value="Jatrabari">Jatrabari</option>
+                            <option value="Kalabagan">Kalabagan</option>
+                            <option value="Khilgaon">Khilgaon</option>
+                            <option value="Mirpur">Mirpur</option>
+                            <option value="Mahammadpur">Mahammadpur</option>
+                            <option value="Motijheel">Motijheel</option>
+                            <option value="New Market">New Market</option>
+                            <option value="Shahbagh">Shahbagh</option>
+                            <option value="Tejgaon">Tejgaon</option>
+                            <option value="Uttara">Uttara</option>
+                        </optgroup>
+                    </select></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="text" name="contact"
+                        placeholder="Contact"></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="password"
+                        name="password" placeholder="Password"></div>
+                <div class="form-group"><input class="border-warning shadow form-control" type="password"
+                        name="password_repeat" placeholder="Password (repeat)"></div>
+
+                <div>
+                    {% for message in messages %}
+                        <h6 style="color: var(--red);" align="center">{{ message }}</h6>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group"><button class="btn btn-outline-success btn-block" type="submit">Sign Up</button></div>
+                <center><a href="{% url 'login' %}" style="color: #0b2298">You already have an account?<br> Login here.</a></center>
+            </form>
+        </div><!-- End: Form Container -->
+    </section><!-- End: Registration Form with Photo -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

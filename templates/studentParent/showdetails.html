@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Show Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+
+    <style>
+        .borderless td,
+        .borderless th {
+            border: none;
+        }
+    </style>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
+        style="color: rgb(15,127,239); max-height: 520px; min-height: 120px;">
+        <div class="container">
+            <div>
+                <a class="navbar-brand">
+                    <span><img class="img-fluid" src="{% static 'home/logo2.jpg' %}"></span>
+                </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"
+                    style="color: #242943; background: #ffffff;">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav nav-right" style="color: rgb(255, 255, 255);">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parentinfo' %}" style="color: rgb(255,255,255);">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'searcheducator' %}" style="color: rgb(255,255,255);">Educator Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'showeducatordetails' %}" style="color: rgb(255,255,255); background-color: #f4476b">Educator Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'confirmrequest' %}" style="color: rgb(255,255,255);">Sent Request</a>
+                    </li>
+                   
+                    
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'updateinfo' %}" style="color: rgb(255,252,252);">Update Info</a>
+                    </li>
+                    <li class="nav-item" style="color: rgb(255, 255, 255);">
+                        <a class="nav-link" href="{% url 'parentlogout' %}" style="color: rgb(255,252,252);">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 800px;background: linear-gradient(to right, #ffff66 0%, #cc99ff 100%);">
+            <div class="col-2" style="margin-top: 200px;">
+                <form method="post" action="{% url 'showeducatordetails' %}">
+                    {% csrf_token %}
+                    <div class="form-group"><select class="border-info shadow form-control" name="educatortype">
+                            <optgroup label="Educator Type">
+                                <option value="Home Educator">Home Educator</option>
+                                <option value="Outside Educator">Outside Educator</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group"><input class="border-warning shadow form-control" type="number"
+                            name="id" min="1" placeholder="Educator ID">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-dark text-success border-primary shadow" type="submit"
+                            style="min-width: 90px;max-width: 200px;color: var(--red);font-size: 20px;">
+                            Show details
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-8" style="margin-top: 80px;">
+                <div class="table-responsive">
+                    <table class="table borderless">
+                        <tr>
+                            <th>{{ hname }}</th>
+                            <td>{{ home_educator.homeTutorName }}</td>
+                            <th>{{ oname }}</th>
+                            <td>{{ outside_educator.outsideTutorName }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hid }}</th>
+                            <td>{{ home_educator.id }}</td>
+                            <th>{{ oid }}</th>
+                            <td>{{ outside_educator.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hemail }}</th>
+                            <td>{{ home_educator.homeTutorEmail }}</td>
+                            <th>{{ oemail }}</th>
+                            <td>{{ outside_educator.outsideTutorEmail }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ uni }}</th>
+                            <td>{{ home_educator.university }}</td>
+                            <th>{{ ins }}</th>
+                            <td>{{ outside_educator.institute }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ dep }}</th>
+                            <td>{{ home_educator.department }}</td>
+                            <th>{{ des }}</th>
+                            <td>{{ outside_educator.designation }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ exp }}</th>
+                            <td>{{ home_educator.experience }}</td>
+                            <th>{{ oloc }}</th>
+                            <td>{{ outside_educator.outsideTutorLocation }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hloc }}</th>
+                            <td>{{ home_educator.homeTutorLocation }}</td>
+                            <th>{{ ocontact }}</th>
+                            <td>{{ outside_educator.outsideTutorContact }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hcontact }}</th>
+                            <td>{{ home_educator.homeTutorContact }}</td>
+                            <th>{{ orating }}</th>
+                            <td>{{ outside_educator.outsideTutorRating }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hrating }}</th>
+                            <td>{{ home_educator.homeTutorRating }}</td>
+                            <th>{{ osub }}</th>
+                            <td>{{ outside_subjects.firstSubject }} {{ outside_subjects.secondSubject }} {{ outside_subjects.thirdSubject }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ hsub }}</th>
+                            <td>{{ home_subjects.firstSubject }} {{ home_subjects.secondSubject }} {{ home_subjects.thirdSubject }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
